@@ -51,13 +51,15 @@
 
    - **Query**; select * from portfolioproject.`bike purchase` where `Purchased Bike` = 'Yes' and income > (select avg(income) from portfolioproject.`bike purchase`);
 
-   - This query returns **records** of identifiers that **purchased bikes and are of above average income status** .From this display,we have an overview of attributes possessed by this demographic of identifiers.
+   - This query **returns records** of identifiers that **purchased bikes and are of above average income status** .From this display,we have an overview of attributes possessed by this demographic of identifiers.
 
-  **4).** Create a view that holds records of only identifiers that purchased bikes in addittion to all thier attributes.
+  **4).** **Create a view** namely **key_vars** that holds records of only identifiers that purchased bikes in addittion to all thier key attributes(Income,Commute distance,Age brackets).
 
    - **Query**; create view key_vars as select ID,`Purchased Bike`,`Commute Distance`,Income,`Age brackets.` from portfolioproject.`bike purchase` where `Purchased Bike` = 'Yes';
 
-   - Confirm
+   - Confirm that view has been created using the query: show full tables where table_type='VIEW';
+
+   - Display records from the view and 
 
  
  
