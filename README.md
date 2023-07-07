@@ -63,7 +63,7 @@
 
    - **Query**; select * from key_vars;
 
-   -From this query, we get an **overview of all the records in the view**.
+   - From this query, we get an **overview of all the records in the view**.
 
    **6)** **Add a new field** ie *row number* to the 'key_vars' view 
 
@@ -77,9 +77,9 @@
    - **Query**; select ID,`Purchased Bike`,`Commute Distance`,`Age brackets.`,avg(income) over (partition by `Commute Distance`) as average_salary
  from key_vars;
 
-     - From running this query, the **records** in the view are **split into different partitions in accordance to their commute distance**.These partitions enable for analysis of the records per commute distance hence drawing insights from each commute distance group separetly.
+   - From running this query, the **records** in the view are **split into different partitions in accordance to their commute distance**.These partitions enable for analysis of the records per commute distance hence drawing insights from each commute distance group separetly.
 
-   **8)** Total number of bike purchasers per age bracket.
+ **8)** Total number of bike purchasers per age bracket.
 
    - **Query**; select `Age brackets.`,count(ID) as age_group_total from key_vars group by `Age brackets.` ;
 
@@ -87,65 +87,72 @@
 
    - Hence, the seller should **prioritize marketing to the middle age bracket** above all other age brackets.
 
-   **9)** **Drop the view** 'key_vars'
+ **9)** **Drop the view** 'key_vars'
 
    - **Query**; drop view key_vars;
     
    - At the momment,we do not need the 'key_vars' view any more,thus we **delete it from the database** using the query above.
 
-     ##Data Analysis
-     #First Analysis:Comparision between the average income of bike purchasers and non-bike purcharsers
+   ## Data Analysis
+   ### **1)** First Analysis: Comparision between the average income of bike purchasers and non-bike purcharsers
      
-     - **Query**;select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.`bike purchase` group by `Purchased Bike`,Gender order by 
+   - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.`bike purchase` group by `Purchased Bike`,Gender order by 
        average_income desc;
 
-    - From my analysis,I note that:
+   - From first analysis,I note that:
 
-    **1.** Bikes were purchased by identifiers that have an average higher income compared to the non-purchasers.This is in both male and female genders.
+      **>** Bikes were purchased by identifiers that have an average higher income compared to the non-purchasers.This is in both male and female genders.
 
-    **2.** The average income of the male identifiers is higher compared to the average income of the female identifiers.
+      **>** The average income of the male identifiers is higher compared to the average income of the female identifiers.
 
-    **3.** In addittion,the average income of the male identifiers that did not purchase a bike is still higher than the average income of female identifiers that 
+      **>** In addittion,the average income of the male identifiers that did not purchase a bike is still higher than the average income of female identifiers that 
             purchased bikes.
 
-   #Second Analysis: Comparision between commute distance of bike purchasers and non-bike purchasers.
+   ### 2)** Second Analysis: Comparision between commute distance of bike purchasers and non-bike purchasers.
 
    - **Query**;  select `Commute Distance`,`Purchased Bike`,count(`Purchased Bike`) as no_of_people from portfolioproject.`bike purchase` group by `Commute 
-        Distance`,`Purchased bike` order by `commute distance`;
+                 Distance`,`Purchased bike` order by `commute distance`;
 
-   - From my analysis,I noted that:
+   - From my second analysis,I noted that:
 
-     **1.** The largest target market in line with the commute distance attribute lies in the '0-1 miles commute distance' identifiers.This is because this category 
+       **>** The largest target market in line with the commute distance attribute lies in the '0-1 miles commute distance' identifiers.This is because this category 
              contains the highest number of identifiers.
 
-     **2.** As the commute distance increases, the size of the target market decreases.
+       **>** As the commute distance increases, the size of the target market decreases.
 
-      **3.** As the commute distance increases,the amount of bike purchases decreases.
+       **>** As the commute distance increases,the amount of bike purchases decreases.
 
-   #Third Analysis: Comparision of bike purchase in terms of age brackets
+   ### **3)** Third Analysis: Comparision of bike purchase in terms of age brackets
 
    - **Query**; select `Age brackets.`,`Purchased Bike`,count(`Purchased Bike`) from portfolioproject.`bike purchase` group by  `Age brackets.`,`Purchased bike`
-        order by `Age brackets.`;
+                 order by `Age brackets.`;
 
-    **1.** The largest target market in line with the age bracket attribute is the 'middle age bracket'(31-49 years).This is because this age bracket contains the highest 
-        number of identifiers.
+   - From third analysis, I noted that;
+
+       **>** The largest target market in line with the age bracket attribute is the 'middle age bracket'(31-49 years).This is because this age bracket contains the 
+              highest number of identifiers.
         
-    **2.** The 'middle age bracket'(31-49 years) has significantly higher bike purchases compared to the 'old'(54 and above years) and 'adolescent'( 30 and below years) 
-        age brackets.
+      **>** The 'middle age bracket'(31-49 years) has significantly higher bike purchases compared to the 'old'(54 and above years) and 'adolescent'( 30 and below years) 
+              age brackets.
 
-        ##Recommendations to bike seller
+  ## Recommendations to bike seller
 
-        From insights obtained from analyzing the data set,I set to give reccommendations that will guide the bike seller in conducting targeted marketing which will in turn lead to increased bikes sales.
+   - From insights obtained from analyzing the data set,I set to give reccommendations that will guide the bike seller in conducting targeted marketing which will in turn 
+     lead to increased bikes sales.
 
-My reccommendations are as follows:
+   - My reccommendations are as follows:
 
-1).Target identifiers with higher income levels when marketing the bikes.As from our insights,higher income earners purchase bikes more compared to thier counterparts.
+      **1).** Target identifiers with higher income levels when marketing the bikes.As from our insights,higher income earners purchase bikes more compared to thier 
+            counterparts.
 
-2).When marketing to identifiers with the same average income level, prioritize the female gender in comparision to the male gender.This is because from our analysis,we observe that at the same avarage income level,female identifiers are more likely to make a bike purchase as oppossed to their male counterparts.
+      **2).** When marketing to identifiers with the same average income level, prioritize the female gender in comparision to the male gender.This is because from our 
+             analysis,we observe that at the same avarage income level,female identifiers are more likely to make a bike purchase as oppossed to their male counterparts.
 
-3).Prioritize identifiers in the 0-5 miles commute distance with top priority to those in the 0-1 miles commute distance during marketing.From our insights,we observe that identifiers in this range are more in number and have a tendancy to purchase bikes.
+      **3).** Prioritize identifiers in the 0-5 miles commute distance with top priority to those in the 0-1 miles commute distance during marketing.From our insights,we 
+              observe that identifiers in this range are more in number and have a tendancy to purchase bikes.
 
-4).Middle age bracket identifiers should also be accorded target market priority.It is evident that they carry the highest number of identifiers as well as the highest number of bike purchases in terms of age bracket.
+      **4).** Middle age bracket identifiers should also be accorded target market priority.It is evident that they carry the highest number of identifiers as well as the 
+             highest number of bike purchases in terms of age bracket.
  
 
      
