@@ -99,7 +99,7 @@
 
    ## Data Analysis
    *NB:* The queries are not committed.
-   ### **1)** First Analysis: Comparision between the average income of bike purchasers and non-bike purcharsers
+   ### **1)** *Comparision between the average income of bike purchasers and non-bike purcharsers*.
      
    - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.`bike purchase` group by `Purchased Bike`,Gender order by 
        average_income desc;
@@ -113,7 +113,7 @@
       **>** In addittion,the average income of the male identifiers that did not purchase a bike is still higher than the average income of female identifiers that 
             purchased bikes.
 
-   ### **2)** Second Analysis: Comparision between commute distance of bike purchasers and non-bike purchasers.
+   ### **2)** *Comparision between the commute distance of bike purchasers and non-bike purchasers*.
 
    - **Query**;  select `Commute Distance`,`Purchased Bike`,count(`Purchased Bike`) as no_of_people from portfolioproject.`bike purchase` group by `Commute 
                  Distance`,`Purchased bike` order by `commute distance`;
@@ -127,7 +127,7 @@
 
        **>** As the commute distance increases,the amount of bike purchases also decreases.
 
-   ### **3)** Third Analysis: Comparision of bike purchase in terms of age brackets
+   ### **3)** *Comparision of bike purchase in terms of age brackets*.
 
    - **Query**; select `Age brackets.`,`Purchased Bike`,count(`Purchased Bike`) from portfolioproject.`bike purchase` group by  `Age brackets.`,`Purchased bike`
                  order by `Age brackets.`;
