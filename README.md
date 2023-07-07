@@ -18,6 +18,7 @@
    potential to purchase more bikes.
 
  ## **Dataset Overview**
+ 
  * The dataset is **obtained from** the open source plattform **'Kaggle'** and is accessible to the general public for use.
    
  * Upon obtaining the dataset from kaggle,I **cleaned and transformed it on Microsoft Excel** to prepare it for data analysis.
@@ -36,6 +37,8 @@
 
 
 ## **Data Exploration**
+*NB*: The queries are not committed.
+ 
 **1).** Number of people per gender.
 
    - **Query**; select gender,count(*) as total_people from portfolioproject.`bike purchase` group by gender order by total_people desc;
@@ -95,6 +98,7 @@
    - At the momment,I do not need the 'key_vars' view any more,thus I **deleted it from the database** using the query above.
 
    ## Data Analysis
+   *NB:* The queries are not committed.
    ### **1)** First Analysis: Comparision between the average income of bike purchasers and non-bike purcharsers
      
    - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.`bike purchase` group by `Purchased Bike`,Gender order by 
