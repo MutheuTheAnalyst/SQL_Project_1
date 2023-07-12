@@ -59,7 +59,7 @@
 
   **4).** **Create a view** namely **key_vars** that holds records of only identifiers that purchased bikes in addittion to thier key attributes(Income,Commute distance,Age brackets).
 
-   - **Query**; create view key_vars as select ID,`Purchased Bike`,`Commute Distance`,Income,`Age brackets.` from portfolioproject.bike purchase where `Purchased Bike` = 'Yes';
+   - **Query**; create view key_vars as select ID,Purchased Bike,Commute Distance,Income,Age brackets. from portfolioproject.bike purchase where Purchased Bike = 'Yes';
 
    - *NB*; Confirm that view has been created using the **query**: show full tables where table_type='VIEW';
 
@@ -71,21 +71,21 @@
 
    **6)** **Add a new field** ie *row number* to the 'key_vars' view. 
 
-   - **Query**; select row_number() over (order by Income desc) as row_num, ID, `Purchased Bike`,`Commute Distance`,Income,`Age brackets.`
+   - **Query**; select row_number() over (order by Income desc) as row_num, ID, Purchased Bike,Commute Distance,Income,Age brackets.
  from key_vars;
 
    - From running this query, the **records** in the view are **assigned row numbers in auto-increment order**.This allows **for easier analysis** because each row can be referenced in accordance to it's row number.
 
    **7)** **Partition by commute distance** the records in the 'key_vars' view.
 
-   - **Query**; select ID,`Purchased Bike`,`Commute Distance`,`Age brackets.`,avg(income) over (partition by `Commute Distance`) as average_salary
+   - **Query**; select ID,Purchased Bike,Commute Distance,Age brackets.avg(income) over (partition by Commute Distance) as average_salary
  from key_vars;
 
    - From running this query, the **records** in the view are **split into different partitions in accordance to their commute distance**.These partitions enable for analysis of the records per commute distance hence drawing insights from each commute distance group separetly becomes easier.
 
  **8)** Total number of bike purchasers per age bracket.
 
-   - **Query**; select `Age brackets.`,count(ID) as age_group_total from key_vars group by `Age brackets.` ;
+   - **Query**; select Age brackets.,count(ID) as age_group_total from key_vars group by Age brackets. ;
 
    - The **middle age bracket** contains the **most bike purchasers(383)** with the **old age bracket** coming in **2nd(59)** and the **least** being the **adolescents age bracket(39)**.I deduced this from running the query above.
 
@@ -101,7 +101,7 @@
    *NB:* The queries are not committed.
    ### **1)** *Comparision between the average income of bike purchasers and non-bike purcharsers*.
      
-   - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.bike purchase group by `Purchased Bike`,Gender order by 
+   - **Query**; select Gender,Purchased Bike,round((avg(income)),2) as average_income from  portfolioproject.bike purchase group by Purchased Bike,Gender order by 
        average_income desc;
 
    - From the first analysis,I noted that:
@@ -115,8 +115,8 @@
 
    ### **2)** *Comparision between the commute distance of bike purchasers and non-bike purchasers*.
 
-   - **Query**;  select `Commute Distance`,`Purchased Bike`,count(`Purchased Bike`) as no_of_people from portfolioproject.bike purchase group by `Commute 
-                 Distance`,`Purchased bike` order by `commute distance`;
+   - **Query**;  select Commute Distance,Purchased Bike,count(Purchased Bike) as no_of_people from portfolioproject.bike purchase group by Commute 
+                 Distance,Purchased bike order by commute distance;
 
    - From my second analysis,I noted that:
 
@@ -129,8 +129,8 @@
 
    ### **3)** *Comparision of bike purchase in terms of age brackets*.
 
-   - **Query**; select `Age brackets.`,`Purchased Bike`,count(`Purchased Bike`) from portfolioproject.bike purchase group by  `Age brackets.`,`Purchased bike`
-                 order by `Age brackets.`;
+   - **Query**; select Age brackets.,Purchased Bike,count(Purchased Bike) from portfolioproject.bike purchase group by  Age brackets.,Purchased bike
+                 order by Age brackets.;
 
    - From my third analysis, I noted that;
 
