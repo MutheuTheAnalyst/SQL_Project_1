@@ -23,7 +23,7 @@
    
  * Upon obtaining the dataset from kaggle,I **cleaned and transformed it on Microsoft Excel** to prepare it for data analysis.
 
- * On MYSQL workbench,I **created a database** by the name 'PortfolioProject' and using the **MYSQL export feature**,I  **exported the 'bike purchase' dataset** into the created database.The dataset is loaded as a **table, namely:portfolioproject.`bike purchase`.**
+ * On MYSQL workbench,I **created a database** by the name 'PortfolioProject' and using the **MYSQL export feature**,I  **exported the 'bike purchase' dataset** into the created database.The dataset is loaded as a **table, namely:portfolioproject.bike purchase.**
 
 * To confirm whether the **dataset exported correctly**, I ran the **query**: describe portfolioproject.`bike purchase`; From running this query, I observed that the **fields** of the tables are in the **right data format.**
 
@@ -33,7 +33,7 @@
 
 * In addittion,to **confirm** whether **all records were exported correctly**,I ran the **query**: select * from portfolioproject.`bike purchase`; This **query displays all the records and fields** in the dataset.It's observed that the **dataset contains 1000 records**.
 
-* Proceeding further,I confirmed that the dataset **does not contain any duplicates**.This by using the **distinct function** i.e select count(distinct id) as sample_size from portfolioproject.`bike purchase`; .This query still return query 1000 records.
+* Proceeding further,I confirmed that the dataset **does not contain any duplicates**.This by using the **distinct function** i.e select count(distinct id) as sample_size from portfolioproject.bike purchase; .This query still return query 1000 records.
 
 
 ## **Data Exploration**
@@ -41,25 +41,25 @@
  
 **1).** Number of people per gender.
 
-   - **Query**; select gender,count(*) as total_people from portfolioproject.`bike purchase` group by gender order by total_people desc;
+   - **Query**; select gender,count(*) as total_people from portfolioproject.bike purchase group by gender order by total_people desc;
      
    - From this query, I deduced that the **total number** of **male identifiers(511)** are more in number than the **female identifiers (489)**.
      
  **2).** Compare the average income of male and female identifiers.
 
-   - **Query**; select gender,avg(income) from portfolioproject.`bike purchase` group by gender;
+   - **Query**; select gender,avg(income) from portfolioproject.bike purchase group by gender;
    
    - From this query, I deduced that the **average income** of **male identifiers(58.06)** is slightly higher than that of **female identifiers(54.58)**.
 
  **3).** Only display identifiers who purchased bikes and their income is above average.
 
-   - **Query**; select * from portfolioproject.`bike purchase` where `Purchased Bike` = 'Yes' and income > (select avg(income) from portfolioproject.`bike purchase`);
+   - **Query**; select * from portfolioproject.bike purchase where Purchased Bike = 'Yes' and income > (select avg(income) from portfolioproject.bike purchase);
 
    - This query **returns records** of identifiers that **purchased bikes and are of above average income status** .From this display,I obtained the an overview of attributes possessed by this demographic of identifiers.
 
   **4).** **Create a view** namely **key_vars** that holds records of only identifiers that purchased bikes in addittion to thier key attributes(Income,Commute distance,Age brackets).
 
-   - **Query**; create view key_vars as select ID,`Purchased Bike`,`Commute Distance`,Income,`Age brackets.` from portfolioproject.`bike purchase` where `Purchased Bike` = 'Yes';
+   - **Query**; create view key_vars as select ID,`Purchased Bike`,`Commute Distance`,Income,`Age brackets.` from portfolioproject.bike purchase where `Purchased Bike` = 'Yes';
 
    - *NB*; Confirm that view has been created using the **query**: show full tables where table_type='VIEW';
 
@@ -101,7 +101,7 @@
    *NB:* The queries are not committed.
    ### **1)** *Comparision between the average income of bike purchasers and non-bike purcharsers*.
      
-   - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.`bike purchase` group by `Purchased Bike`,Gender order by 
+   - **Query**; select Gender,`Purchased Bike`,round((avg(income)),2) as average_income from  portfolioproject.bike purchase group by `Purchased Bike`,Gender order by 
        average_income desc;
 
    - From the first analysis,I noted that:
@@ -115,7 +115,7 @@
 
    ### **2)** *Comparision between the commute distance of bike purchasers and non-bike purchasers*.
 
-   - **Query**;  select `Commute Distance`,`Purchased Bike`,count(`Purchased Bike`) as no_of_people from portfolioproject.`bike purchase` group by `Commute 
+   - **Query**;  select `Commute Distance`,`Purchased Bike`,count(`Purchased Bike`) as no_of_people from portfolioproject.bike purchase group by `Commute 
                  Distance`,`Purchased bike` order by `commute distance`;
 
    - From my second analysis,I noted that:
@@ -129,7 +129,7 @@
 
    ### **3)** *Comparision of bike purchase in terms of age brackets*.
 
-   - **Query**; select `Age brackets.`,`Purchased Bike`,count(`Purchased Bike`) from portfolioproject.`bike purchase` group by  `Age brackets.`,`Purchased bike`
+   - **Query**; select `Age brackets.`,`Purchased Bike`,count(`Purchased Bike`) from portfolioproject.bike purchase group by  `Age brackets.`,`Purchased bike`
                  order by `Age brackets.`;
 
    - From my third analysis, I noted that;
